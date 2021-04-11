@@ -7,6 +7,7 @@ import com.sci.finalproject.myProject.repository.WalletRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -101,9 +102,12 @@ public class WalletService {
 
             if(walletExisting.isPresent())
             {
+                DecimalFormat df = new DecimalFormat("#.##");
                 Wallet newWallet = walletExisting.get();
                 newWallet.setNumberOfCoins(wallet.getNumberOfCoins());
                 newWallet.setUsdPrice(wallet.getNumberOfCoins() * coinService.findCoinByName(newWallet.getWalletCoin()).getUsdPrice());
+
+                newWallet.setUsdPrice(Double.valueOf(df.format(newWallet.getUsdPrice())));
 
                 newWallet = walletRepository.save(newWallet);
 
