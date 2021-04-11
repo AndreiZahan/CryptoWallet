@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>All Coins</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+
+<body>
+<form th:action="@{/admin/adminHome}" method="get">
+    <button class="btn btn-md btn-warning btn-block" type="Submit">Return to home page</button>
+</form>
+<div class="container my-2">
+    <div class="card">
+        <div class="card-body">
+            <div th:switch="${wallets}" class="container my-5">
+
+                <div class="col-md-10">
+                    <h2 th:case="null">No record found !!</h2>
+                    <div th:case="*">
+                        <table class="table table-striped table-responsive-md">
+                            <thead>
+                            <tr>
+                                <th>Wallet name</th>
+                                <th>Wallet crypto key</th>
+                                <th>Wallet coin</th>
+                                <th>Number of coins</th>
+                                <th>Usd value</th>
+                                <th>Delete Wallet</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="wallet : ${wallets}">
+                                <td th:text="${wallet.walletName}"></td>
+                                <td th:text="${wallet.cryptoKey}"></td>
+                                <td th:text="${wallet.walletCoin}"></td>
+                                <td th:text="${wallet.numberOfCoins}"></td>
+                                <td th:text="${wallet.usdPrice}"></td>
+                                <td>
+                                    <a th:href="@{/admin/deleteWalletById/{id}(id=${wallet.id})}"
+                                       class="btn btn-primary">
+                                        <i class="fas fa-user-times ml-2"></i>
+                                    </a>
+                                </td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>

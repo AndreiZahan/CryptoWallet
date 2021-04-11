@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Login Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/login.css}"/>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<form th:action="@{/}" method="get">
+    <button class="btn btn-md btn-warning btn-block" type="Submit">Return to Home Page</button>
+</form>
+
+<div id="particles-js">
+    <div class="container  particles-container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <form th:action="@{/login}" method="POST" class="form-signin text-center">
+                    <h3 class="form-signin-heading" th:text="Welcome">Welcome</h3>
+                    <br/>
+                    <input type="text" id="user_name" name="user_name" placeholder="User Name" class="form-control"
+                           required/> <br/>
+                    <input type="password" th:placeholder="Password" id="password" name="password" class="form-control"
+                           required/> <br/>
+
+                    <div align="center" th:if="${param.error}">
+                        <p style="color: #ff7066;">User Name or Password invalid, please verify</p>
+                    </div>
+                    <button class="button orange-btn" name="Submit" value="Login" type="Submit" th:text="Login">Login
+                    </button>
+                </form>
+                <form class="text-center" th:action="@{/registration}" method="get">
+                    <p class="register-text">Don't have an account?</p>
+                    <button class="button" type="Submit">Go To Registration Page</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/particles.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/particles.min.js"></script>
+    <script src="js/lib/stats.js"></script>
+</div>
+</body>
+</html>

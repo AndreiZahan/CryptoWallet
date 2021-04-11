@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>User Page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/home.css}"/>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/sidebar.css}"/>
+    <script src="https://kit.fontawesome.com/caa19c55c0.js" crossorigin="anonymous"></script>
+
+
+</head>
+
+<body>
+<div id="particles-js">
+    <div class="container particles-container">
+
+        <div class="area"></div>
+        <nav class="main-menu">
+            <ul>
+                <li>
+                    <a th:href="@{/user/userHome}">
+                        <i class="fa fa-home fa-2x"></i>
+                        <span class="nav-text">
+                            Home
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/user/createWallet}">
+                        <i class="fa fa-wallet fa-2x" aria-hidden="true"></i>
+                        <span class="nav-text">
+                            Add Wallet
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a th:href="@{/user/seeWallets}">
+                        <i class="fa fa-edit fa-2x" aria-hidden="true"></i>
+                        <span class="nav-text">
+                            Edit Wallet
+                        </span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a th:href="@{/user/seeWallets}">
+                        <i class="fa fa-list fa-2x" aria-hidden="true"></i>
+                        <span class="nav-text">
+                            Wallet List
+                        </span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a th:href="@{/}">
+                        <i class="fa fa-wheelchair-alt fa-2x" aria-hidden="true"></i>
+                        <span class="nav-text">
+                            Contact us!
+                        </span>
+                    </a>
+                </li>
+
+                <li class="has-subnav">
+                    <a href="/user/userHome">
+                        <span class="nav-text fa-2x">
+                            To be released
+                        </span>
+                    </a>
+                </li>
+
+                <li class="has-subnav">
+                    <a href="/user/userHome">
+                        <i class="fa fa-chart-bar fa-2x"></i>
+                        <span class="nav-text">
+                            Real-time Charts
+                        </span>
+                    </a>
+                </li>
+                <li class="has-subnav">
+                    <a href="/user/userHome">
+                        <i class="fa fa-server fa-2x"></i>
+                        <span class="nav-text">
+                            Real-time Data - API
+                        </span>
+                    </a>
+                </li>
+
+                <li class="has-subnav">
+                    <a href="/user/userHome">
+                        <i class="fa fa-credit-card-alt fa-2x" aria-hidden="true"></i>
+                        <span class="nav-text">
+                            Add Card
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/user/userHome">
+                        <i class="fa fa-beer fa-2x" aria-hidden="true"></i>
+                        <span class="nav-text">
+                            Donate!
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/user/userHome">
+                        <i class="fa fa-blind fa-2x"></i>
+                        <span class="nav-text">
+                           Become Patreon
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/user/userHome">
+                        <i class="fa fa-newspaper fa-2x"></i>
+                        <span class="nav-text">
+                            News Feed
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/user/userHome">
+                        <i class="fa fa-user-cog fa-2x"></i>
+                        <span class="nav-text">
+                            Profile Update
+                        </span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/user/userHome">
+                        <i class="fa fa-fire fa-2x"></i>
+                        <span class="nav-text">
+                            Subscribe to NewsLetter
+                        </span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul class="logout">
+                <li>
+                    <a th:href="@{/logout}">
+                        <i class="fa fa-power-off fa-2x"></i>
+                        <span class="nav-text">
+                            Logout
+                        </span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="col-md-6 col-md-offset-3">
+            <form autocomplete="off" action="#" th:action="@{/user/createWallet}"
+                  th:object="${wallet}" method="post" class="form-horizontal"
+                  role="form">
+                <h2>Wallet Creation Form</h2>
+                <div class="form-group">
+                    <div>
+                        <label th:if="${#fields.hasErrors('cryptoKey')}" th:errors="*{cryptoKey}"
+                               class="validation-message"></label>
+                        <input type="text" th:field="*{cryptoKey}" placeholder="Crypto Key"
+                               class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label th:if="${#fields.hasErrors('walletName')}" th:errors="*{walletName}"
+                               class="validation-message"></label>
+                        <select style="background-color:green" th:field="*{walletCoin}" name="coins" id="coins">
+                            <option style="color:black" value="BITCOIN">BITCOIN</option>
+                            <option style="color:black" value="ETHEREUM">ETHEREUM</option>
+                            <option style="color:black" value="TETHER">TETHER</option>
+                            <option style="color:black" value="XRP">XRP</option>
+                            <option style="color:black" value="LITECOIN">LITECOIN</option>
+                            <option style="color:black" value="STELLAR">STELLAR</option>
+                            <option style="color:black" value="EOS">EOS</option>
+                            <option style="color:black" value="ELROND">ELROND</option>
+                            <option style="color:black" value="POLKADOT">POLKADOT</option>
+                            <option style="color:black" value="CHAINLINK">CHAINLINK</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <label th:if="${#fields.hasErrors('numberOfCoins')}" th:errors="*{numberOfCoins}"
+                               class="validation-message"></label>
+                        <input type="text" th:field="*{numberOfCoins}" placeholder="Number of coins"
+                               class="form-control" required/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div>
+                        <button type="submit" class="btn btn-primary btn-block">Create Wallet</button>
+                    </div>
+                </div>
+
+                <h2><span class="text-success" th:utext="${successMessage}"></span></h2>
+
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="../js/particles.js"></script>
+<script src="../js/app.js"></script>
+<script src="../js/particles.min.js"></script>
+<script src="../js/lib/stats.js"></script>
+</body>
+</html>
